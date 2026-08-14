@@ -1,0 +1,17 @@
+<header class="site-header" role="banner">
+  {%- assign home_url = "/" | relative_url -%}
+  <div class="logo-group">
+    <a class="site-logo" rel="author" href="{{ home_url }}">
+      <img src="{{ "/assets/images/mensa-logo.png" | relative_url }}" alt="{{ site.title | escape }} logo">
+    </a>
+    <a class="site-title" rel="author" href="{{ home_url }}">{{ site.title | escape }}</a>
+  </div>
+  <nav class="site-nav">
+    <a href="{{ home_url }}#about">About</a>
+    <a href="{{ home_url }}#events">Events</a>
+    <a href="{{ home_url }}#bulletin">Bulletin Board</a>
+    <a href="{{ home_url }}#gallery">Gallery</a>
+    <a href="{{ home_url }}#contact">Contact</a>
+  </nav>
+  <a class="btn-primary" href="https://www.us.mensa.org/Login" target="_blank" rel="noopener">Log in to Mensa</a>
+</header>

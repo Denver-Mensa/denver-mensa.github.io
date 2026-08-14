@@ -1,0 +1,90 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  {{ content }}
+
+  <section class="hero" id="about">
+    <div class="hero-inner">
+      <span class="badge">5,280 FT &middot; MILE HIGH CITY</span>
+      <h1>Where brilliance meets the mountains</h1>
+      <p>Events, discussion, and connection for Denver-area Mensans since 1965.</p>
+      <div class="hero-buttons">
+        <a class="btn-primary" href="{{ "/events/" | relative_url }}">See upcoming events</a>
+        <a class="btn-secondary" href="https://www.us.mensa.org/join/" target="_blank" rel="noopener">How to join</a>
+      </div>
+    </div>
+    <svg class="mountains" viewBox="0 0 800 130" preserveAspectRatio="none" aria-hidden="true">
+      <polygon points="0,130 0,80 90,20 180,90 260,40 340,95 430,15 520,85 610,45 700,100 800,60 800,130" fill="#5E88B0"/>
+      <polygon points="0,130 0,105 120,55 240,105 340,70 460,110 560,65 680,110 800,90 800,130" fill="#2F5A82"/>
+    </svg>
+  </section>
+
+  <section class="events" id="events">
+    <div class="events-head">
+      <p class="events-label">UPCOMING EVENTS</p>
+      <a class="events-all" href="{{ "/events/" | relative_url }}">All events &#8594;</a>
+    </div>
+    <div class="events-grid" data-calendar
+         data-calendar-id="{{ site.calendar.id }}"
+         data-api-key="{{ site.calendar.api_key }}">
+      <p class="meta">Loading events&hellip;</p>
+    </div>
+  </section>
+
+  <section class="bulletin" id="bulletin">
+    <div class="events-head">
+      <p class="section-label">BULLETIN BOARD</p>
+      <a class="events-all" href="{{ "/posts/" | relative_url }}">All posts &#8594;</a>
+    </div>
+    <div class="bulletin-grid">
+      {%- for post in site.posts limit: 3 -%}
+      <article class="bulletin-post">
+        <span class="tag">{{ post.categories | first | default: "post" | upcase }}</span>
+        <p class="title"><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></p>
+        <div class="body">{{ post.excerpt }}</div>
+        <p class="meta">Posted by {{ post.author | default: site.author }} &middot; {{ post.date | date: "%b %-d" }}</p>
+      </article>
+      {%- endfor -%}
+    </div>
+  </section>
+
+  <section class="gallery" id="gallery">
+    <p class="section-label">GALLERY</p>
+    {%- if site.gallery.url and site.gallery.url != "" -%}
+    <div class="gallery-grid">
+      <a class="gallery-item" style="background:#5E88B0;" href="{{ site.gallery.url }}" target="_blank" rel="noopener">Denver Mensa Events</a>
+      <div class="gallery-item gallery-item--disabled">Gallery</div>
+      <div class="gallery-item gallery-item--disabled">Gallery</div>
+      <div class="gallery-item gallery-item--disabled">Gallery</div>
+      <div class="gallery-item gallery-item--disabled">Gallery</div>
+      <div class="gallery-item gallery-item--disabled">Gallery</div>
+    </div>
+    {%- else -%}
+    <p class="meta">Gallery not configured yet. Add your photo album URL to <code>_config.yml</code> under <code>gallery.url</code>.</p>
+    {%- endif -%}
+  </section>
+
+  <section class="contact" id="contact">
+    <p class="section-label">CONTACT</p>
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <p>Have a question about membership, events, or testing? Reach out and a chapter officer will get back to you.</p>
+        <p>Email: <a href="mailto:info@denver.us.mensa.org">info@denver.us.mensa.org</a></p>
+        <p>Mailing list &amp; socials linked below.</p>
+      </div>
+      <form class="contact-form" action="https://formsubmit.co/YOUR-EMAIL@example.com" method="POST">
+        <input type="hidden" name="_subject" value="New message from denver-mensa.github.io">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="message" placeholder="Message" required></textarea>
+        <button type="submit" class="btn-primary" style="align-self:flex-start;">Send message</button>
+      </form>
+    </div>
+  </section>
+
+</div>
+
+<script src="{{ "/assets/js/calendar.js" | relative_url }}"></script>

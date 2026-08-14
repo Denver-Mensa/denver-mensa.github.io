@@ -1,0 +1,441 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+// Denver Mensa palette and fonts — overrides Minima's defaults.
+$brand-color:      #D97B3F;
+$text-color:       #1E2A4A;
+$background-color: #F7F3EC;
+$grey-color:       #5C6478;
+$grey-color-light: #E4DCC9;
+$grey-color-dark:  #1E2A4A;
+$code-bg-color:    #EFE9DA;
+$base-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+$brand-font-family: "Myriad Pro", "Myriad Web Pro", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+@import "minima";
+
+// ---------------------------------------------------------------------------
+// Design from website.html, scoped to the home page and theme elements.
+// ---------------------------------------------------------------------------
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px 5%;
+  background: #F7F3EC;
+  border-bottom: 1px solid #E4DCC9;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.logo-group .site-logo {
+  text-decoration: none;
+  line-height: 0;
+  flex-shrink: 0;
+}
+
+.logo-group .site-logo img {
+  height: 32px;
+  width: auto;
+}
+
+.logo-group .site-title {
+  font-family: $brand-font-family;
+  font-weight: 500;
+  font-size: 16px;
+  color: #1E2A4A;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.site-nav {
+  display: flex;
+  gap: 24px;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+.site-nav a {
+  color: #4A5568;
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  color: #1E2A4A;
+  text-decoration: none;
+}
+
+.site-footer {
+  background: #1E2A4A;
+  color: #C7CEE0;
+  border-top: 0;
+  padding: 16px 5%;
+  font-size: 12px;
+  text-align: center;
+}
+
+.site-footer .footer-heading,
+.site-footer .footer-col p {
+  color: #C7CEE0;
+}
+
+.site-footer a {
+  color: #F2A56B;
+}
+
+// Home page uses full-width sections instead of Minima's 800px wrapper.
+.home-page .page-content .wrapper {
+  max-width: none;
+  padding: 0;
+}
+
+.page-content {
+  padding-bottom: 0;
+}
+
+.btn-primary {
+  display: inline-block;
+  font-size: 13px;
+  padding: 9px 18px;
+  background: #D97B3F;
+  color: #FFF8EF;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover {
+    color: #FFF8EF;
+    text-decoration: none;
+  }
+}
+
+.btn-secondary {
+  display: inline-block;
+  font-size: 13px;
+  padding: 9px 18px;
+  background: transparent;
+  color: #1E2A4A;
+  border: 1px solid #1E2A4A;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    color: #1E2A4A;
+    text-decoration: none;
+  }
+}
+
+// Hero
+.hero {
+  position: relative;
+  padding: 56px 5% 0;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: #B65C1F;
+  background: #F6E4D2;
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.hero h1 {
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 500;
+  color: #1E2A4A;
+  margin: 0 0 12px;
+  line-height: 1.25;
+}
+
+.hero p {
+  font-size: 14px;
+  color: #5C6478;
+  max-width: 440px;
+  margin: 0 auto 22px;
+  line-height: 1.6;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.mountains {
+  width: 100%;
+  height: auto;
+  max-height: 130px;
+  margin-top: 32px;
+  display: block;
+}
+
+// Events
+.events {
+  padding: 28px 5% 40px;
+  background: #F7F3EC;
+}
+
+.events-label {
+  font-size: 13px;
+  color: #8A8266;
+  margin: 0 0 14px;
+  letter-spacing: 0.03em;
+}
+
+.events-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.events-head .events-label {
+  margin-bottom: 14px;
+}
+
+.events-all {
+  font-size: 12px;
+  color: #B65C1F;
+  text-decoration: none;
+}
+
+.events-all:hover {
+  text-decoration: underline;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.event-card {
+  background: #FFFFFF;
+  border: 1px solid #E4DCC9;
+  border-radius: 10px;
+  padding: 14px;
+  min-width: 0;
+}
+
+.event-card .icon {
+  font-size: 20px;
+  color: #2F5A82;
+}
+
+.event-card p.title {
+  font-size: 13px;
+  font-weight: 500;
+  margin: 10px 0 2px;
+  color: #1E2A4A;
+}
+
+.event-card p.meta {
+  font-size: 12px;
+  color: #8A8266;
+  margin: 0;
+}
+
+.section-label {
+  font-size: 13px;
+  color: #8A8266;
+  margin: 0 0 14px;
+  letter-spacing: 0.03em;
+}
+
+// Bulletin board
+.bulletin {
+  padding: 40px 5%;
+  background: #EFE9DA;
+}
+
+.bulletin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.bulletin-post {
+  background: #FFFFFF;
+  border: 1px solid #E4DCC9;
+  border-left: 3px solid #D97B3F;
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+.bulletin-post .tag {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: #2F5A82;
+  background: #E5EDF4;
+  padding: 3px 8px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+
+.bulletin-post .title {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 0 4px;
+  color: #1E2A4A;
+}
+
+.bulletin-post .title a {
+  color: #1E2A4A;
+  text-decoration: none;
+}
+
+.bulletin-post .title a:hover {
+  text-decoration: underline;
+}
+
+.bulletin-post .body,
+.bulletin-post .body p {
+  font-size: 12.5px;
+  color: #5C6478;
+  margin: 0 0 6px;
+  line-height: 1.5;
+}
+
+.bulletin-post .meta {
+  font-size: 11px;
+  color: #8A8266;
+  margin: 0;
+}
+
+// Gallery
+.gallery {
+  padding: 40px 5%;
+  background: #F7F3EC;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+}
+
+.gallery-item {
+  aspect-ratio: 4 / 3;
+  max-width: 220px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF8EF;
+  font-size: 12px;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+
+  &:hover {
+    color: #FFF8EF;
+    text-decoration: none;
+  }
+}
+
+.gallery-item:hover {
+  filter: brightness(1.1);
+}
+
+.gallery-item--disabled {
+  background: #9AA0A6;
+  color: #E0E3E7;
+  pointer-events: none;
+}
+
+// Contact
+.contact {
+  padding: 40px 5%;
+  background: #1E2A4A;
+  color: #F7F3EC;
+}
+
+.contact .section-label {
+  color: #9FB0D6;
+}
+
+.contact-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+@media (max-width: 640px) {
+  .contact-wrap { grid-template-columns: 1fr; }
+}
+
+.contact-info p {
+  font-size: 14px;
+  margin: 0 0 10px;
+  color: #D7DEEF;
+}
+
+.contact-info a {
+  color: #F2A56B;
+  text-decoration: none;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  font-family: inherit;
+  font-size: 13px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #3A4A72;
+  background: #24304F;
+  color: #F7F3EC;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #8A97BC;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.calendar-embed {
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(30, 42, 74, 0.15);
+}
