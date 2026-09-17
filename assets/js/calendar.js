@@ -30,9 +30,6 @@
       }
       grid.innerHTML = "";
       data.items.forEach(function (event) {
-        var start = event.start.date
-          ? new Date(event.start.date)
-          : new Date(event.start.dateTime);
         var location = event.location ? " \u00B7 " + event.location : "";
 
         var card = document.createElement("div");
@@ -48,7 +45,7 @@
 
         var meta = document.createElement("p");
         meta.className = "meta";
-        meta.textContent = formatDate(start) + location;
+        meta.textContent = formatDateTime(event.start) + location;
 
         card.appendChild(icon);
         card.appendChild(title);
@@ -64,7 +61,16 @@
     grid.innerHTML = '<p class="meta">' + text + "</p>";
   }
 
-  function formatDate(date) {
-    return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  function formatDateTime(start) {
+    // All-day events carry only a date; timed events carry a dateTime.
+    if (start.date) {
+      var parts = start.date.split("-");
+      var d = new Date(parts[0], parts[1] - 1, parts[2]);
+      return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+    }
+    var d = new Date(start.dateTime);
+    var date = d.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "America/Denver" });
+    var time = d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", timeZone: "America/Denver" });
+    return date + " \u00B7 " + time;
   }
 })();
