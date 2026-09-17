@@ -4,6 +4,7 @@
 
   var apiKey = grid.getAttribute("data-api-key");
   var calendarId = grid.getAttribute("data-calendar-id");
+  var timeZone = grid.getAttribute("data-timezone") || "America/Denver";
 
   if (!apiKey || !calendarId) {
     grid.innerHTML = '<p class="meta">Calendar not configured yet. Add your calendar ID and API key in _config.yml.</p>';
@@ -45,7 +46,7 @@
 
         var meta = document.createElement("p");
         meta.className = "meta";
-        meta.textContent = formatDateTime(event.start) + location;
+        meta.textContent = formatWhen(event.start, event.end) + location;
 
         card.appendChild(icon);
         card.appendChild(title);
@@ -61,16 +62,51 @@
     grid.innerHTML = '<p class="meta">' + text + "</p>";
   }
 
-  function formatDateTime(start) {
-    // All-day events carry only a date; timed events carry a dateTime.
+  function fmtDate(date) {
+    return date.toLocaleDateString("en-US", {
+      month: "short", day: "numeric", timeZone: timeZone
+    });
+  }
+
+  function fmtTime(date) {
+    return date.toLocaleTimeString("en-US", {
+      hour: "numeric", minute: "2-digit", timeZone: timeZone
+    });
+  }
+
+  // "2026-09-20" -> local Date (avoids UTC parsing shifting the day)
+  function parseDateOnly(value) {
+    var p = value.split("-");
+    return new Date(p[0], p[1] - 1, p[2]);
+  }
+
+  function formatWhen(start, end) {
+    var dash = " \u2013 ";
+
+    // All-day event: Google reports an EXCLUSIVE end date.
     if (start.date) {
-      var parts = start.date.split("-");
-      var d = new Date(parts[0], parts[1] - 1, parts[2]);
-      return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+      var s = parseDateOnly(start.date);
+      if (end && end.date) {
+        var e = parseDateOnly(end.date);
+        e.setDate(e.getDate() - 1); // make the end inclusive
+        if (e.getTime() > s.getTime()) {
+          return fmtDate(s) + dash + fmtDate(e);
+        }
+      }
+      return fmtDate(s);
     }
-    var d = new Date(start.dateTime);
-    var date = d.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "America/Denver" });
-    var time = d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", timeZone: "America/Denver" });
-    return date + " \u00B7 " + time;
+
+    // Timed event
+    var st = new Date(start.dateTime);
+    var label = fmtDate(st) + " \u00B7 " + fmtTime(st);
+    if (end && end.dateTime) {
+      var en = new Date(end.dateTime);
+      if (fmtDate(st) === fmtDate(en)) {
+        label += dash + fmtTime(en);
+      } else {
+        label += dash + fmtDate(en) + " \u00B7 " + fmtTime(en);
+      }
+    }
+    return label;
   }
 })();
