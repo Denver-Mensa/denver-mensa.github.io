@@ -66,6 +66,12 @@ section[id] {
   color: #1E2A4A;
   text-decoration: none;
   line-height: 1;
+
+  &:visited,
+  &:hover {
+    color: #1E2A4A;
+    text-decoration: none;
+  }
 }
 
 .site-nav {
@@ -78,6 +84,10 @@ section[id] {
 .site-nav a {
   color: #4A5568;
   text-decoration: none;
+}
+
+.site-nav a:visited {
+  color: #4A5568;
 }
 
 .site-nav a:hover {
@@ -125,7 +135,9 @@ section[id] {
   text-decoration: none;
   white-space: nowrap;
 
-  &:hover {
+  &:hover,
+  &:visited,
+  &:focus {
     color: #FFF8EF;
     text-decoration: none;
   }
@@ -142,7 +154,9 @@ section[id] {
   cursor: pointer;
   text-decoration: none;
 
-  &:hover {
+  &:hover,
+  &:visited,
+  &:focus {
     color: #1E2A4A;
     text-decoration: none;
   }
@@ -320,6 +334,10 @@ section[id] {
   text-decoration: none;
 }
 
+.bulletin-post .title a:visited {
+  color: #1E2A4A;
+}
+
 .bulletin-post .title a:hover {
   text-decoration: underline;
 }
@@ -363,7 +381,9 @@ section[id] {
   padding: 10px;
   text-decoration: none;
 
-  &:hover {
+  &:hover,
+  &:visited,
+  &:focus {
     color: #FFF8EF;
     text-decoration: none;
   }
