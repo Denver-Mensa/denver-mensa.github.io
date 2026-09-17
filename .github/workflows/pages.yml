@@ -1,0 +1,57 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Inject secrets and build
+        env:
+          CALENDAR_ID: ${{ secrets.CALENDAR_ID }}
+          CALENDAR_API_KEY: ${{ secrets.CALENDAR_API_KEY }}
+          GALLERY_URL: ${{ secrets.GALLERY_URL }}
+          CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL }}
+        run: |
+          cat > _config.local.yml <<EOF
+          calendar:
+            id: "${CALENDAR_ID}"
+            api_key: "${CALENDAR_API_KEY}"
+            timezone: America/Denver
+          gallery:
+            url: "${GALLERY_URL}"
+          contact:
+            email: "${CONTACT_EMAIL}"
+          EOF
+          bundle exec jekyll build --config _config.yml,_config.local.yml
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy
+        uses: actions/deploy-pages@v4

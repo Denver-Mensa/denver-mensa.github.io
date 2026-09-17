@@ -32,15 +32,21 @@ theme: minima
 plugins:
   - jekyll-feed
 
-# Google Calendar integration (see /events/ and the home page events section)
+# Secrets are injected at build time by GitHub Actions (see .github/workflows/pages.yml).
+# For local testing, create a gitignored _config.local.yml with real values and build with:
+#   bundle exec jekyll build --config _config.yml,_config.local.yml
 calendar:
   id: ""
-  api_key: "API_KEY_REMOVED"
+  api_key: ""
   timezone: America/Denver
 
 # External photo album shown in the gallery section
 gallery:
   url: ""
+
+# Contact form destination (FormSubmit)
+contact:
+  email: "YOUR-EMAIL@example.com"
 
 # Exclude from processing.
 # The following items will not be processed, by default.

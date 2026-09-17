@@ -75,8 +75,10 @@ layout: default
         <p>Email: <a href="mailto:info@denver.us.mensa.org">info@denver.us.mensa.org</a></p>
         <p>Mailing list &amp; socials linked below.</p>
       </div>
-      <form class="contact-form" action="https://formsubmit.co/YOUR-EMAIL@example.com" method="POST">
+      <form class="contact-form" action="https://formsubmit.co/{{ site.contact.email }}" method="POST">
         <input type="hidden" name="_subject" value="New message from denver-mensa.github.io">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off">
         <input type="text" name="name" placeholder="Name" required>
         <input type="email" name="email" placeholder="Email" required>
         <textarea name="message" placeholder="Message" required></textarea>

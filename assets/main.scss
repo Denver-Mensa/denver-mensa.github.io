@@ -28,6 +28,9 @@ section[id] {
 }
 
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -433,6 +436,11 @@ section[id] {
 .contact-form textarea {
   resize: vertical;
   min-height: 80px;
+}
+
+// Honeypot: invisible to humans, bots fill it and the submission is discarded
+.contact-form .honeypot {
+  display: none !important;
 }
 
 .calendar-embed {
