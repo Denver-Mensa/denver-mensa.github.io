@@ -24,7 +24,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   Where brilliance meets the mountains. Events, discussion, and connection
   for Denver-area Mensans since 1965.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://denver.us.mensa.org" # the base hostname & protocol for your site
 author: Denver Mensa
 
 # Build settings
