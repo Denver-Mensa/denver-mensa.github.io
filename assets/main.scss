@@ -79,6 +79,17 @@ section[id] {
   gap: 24px;
   font-size: 13px;
   flex-wrap: wrap;
+  // Minima positions .site-nav absolutely (top-right) under 600px and
+  // floats it on desktop. Neutralize all of that so our flex header owns layout.
+  position: static;
+  float: none;
+  top: auto;
+  right: auto;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  text-align: left;
+  line-height: normal;
 }
 
 .site-nav a {
