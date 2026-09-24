@@ -17,6 +17,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # Exposed as env so the FTP step's `if:` can test it
+      # (the `secrets` context is not allowed in `if:` expressions).
+      FTP_SERVER: ${{ secrets.FTP_SERVER }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -57,7 +61,7 @@ jobs:
       # Publish the same build to the Mensa web host.
       # Skipped automatically if FTP_SERVER is not configured.
       - name: Deploy to FTP
-        if: ${{ secrets.FTP_SERVER != '' }}
+        if: env.FTP_SERVER != ''
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
