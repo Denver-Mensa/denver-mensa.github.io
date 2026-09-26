@@ -406,6 +406,46 @@ section[id] {
   margin: 0;
 }
 
+// Posts archive: year jump links + grouped sections
+.year-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.year-filter a {
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  color: #B65C1F;
+  background: #F6E4D2;
+  padding: 5px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.year-filter a:visited {
+  color: #B65C1F;
+}
+
+.year-filter a:hover {
+  color: #8F4715;
+  text-decoration: none;
+}
+
+.year-group {
+  margin-bottom: 32px;
+}
+
+.year-heading {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1E2A4A;
+  margin: 0 0 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #E4DCC9;
+}
+
 // Gallery
 .gallery {
   padding: 40px 5%;
